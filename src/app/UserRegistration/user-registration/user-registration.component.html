@@ -1,0 +1,86 @@
+<div class="wrapper">
+  <div class="content-wrapper">
+
+    <section class="content">
+      <br>
+      <div class="container-fluid">
+        <div class="card">
+          <div class="card-header">
+            User Registraction
+          </div>
+          <div class="card-body">
+
+            <form [formGroup]="userRegistration" (ngSubmit)="saveUserRegistration()">
+
+              <div class="form group">
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <label class="form-label">Name </label>
+                    <input type="text" formControlName="Name" class="form-control">
+                    <div *ngIf="( submitted || Formcontrol['Name'].touched) && Formcontrol['Name'].invalid"
+                      class="text-danger">
+                      <div *ngIf="Formcontrol['Name'].errors && Formcontrol['Name'].errors['required']">
+                        Name is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label">Email</label>
+                    <input type="text" formControlName="Email" class="form-control">
+                    <div *ngIf="( submitted || Formcontrol['Email'].touched) && Formcontrol['Email'].invalid"
+                      class="text-danger">
+                      <div *ngIf="Formcontrol['Email'].errors && Formcontrol['Email'].errors['required']">Email is
+                        required.
+                      </div>
+                      <div *ngIf="Formcontrol['Email'].errors && Formcontrol['Email'].errors['pattern'] ">Please, enter
+                        valid
+                        email address.</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <label class="form-label">Password </label>
+                    <input type="password" formControlName="Password" class="form-control">
+                    <div *ngIf="( submitted || Formcontrol['Password'].touched) && Formcontrol['Password'].invalid"
+                      class="text-danger">
+                      <div *ngIf="Formcontrol['Password'].errors && Formcontrol['Password'].errors['required']">
+                        Password is required.
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <br>
+              <button type="submit" style="text-align:center;width:auto;"
+                class="btn btn-primary btn-block">Save</button>
+            </form>
+            <br>
+            <table class="table table-hover">              
+              <thead class="table-secondary" >
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Action</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of userRegistrationData">
+                  <td>
+                    {{data.name}}
+                  </td>
+                  <td>
+                    {{data.email}}
+                  </td>
+                  <td><button class="btn btn-outline-danger" (click)="Delete(data.userId)">Delete</button> </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
